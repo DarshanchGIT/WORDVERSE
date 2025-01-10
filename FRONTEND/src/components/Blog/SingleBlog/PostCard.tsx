@@ -26,7 +26,7 @@ import NumberTicker from "../../ui/number-ticker";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 
 interface Blog {
-  id: number;
+  id: string;
   title: string;
   content: string;
   author: {
