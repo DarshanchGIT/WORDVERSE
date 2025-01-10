@@ -1,8 +1,0 @@
-name = "my-app"
-main = "src/index.ts"
-compatibility_date = "2024-12-12"
-
-[vars]
-DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMDFkNDEwMGQtODNiNy00YTNmLTk0YWMtOTIzNDJlMWFkMTk1IiwidGVuYW50X2lkIjoiYWQwYjhkMzYzMzYzOTA2NzU1MTE4OWM5MTI5YzdiMTJjOTg5M2EyYjJmZTE1Y2E1YzYyMDFiZjY2M2I3ODA0YSIsImludGVybmFsX3NlY3JldCI6Ijc0NTdjODUyLTFmMjQtNGYyZC05NDFlLThkOGE1NTI1MDU1MSJ9.ibd7YsqxT63C5N6Nht3SBO4cCCpHP4K6cH24IvMpIUQ"
-
-JWT_SECRET = "darshanwordverse@123"
