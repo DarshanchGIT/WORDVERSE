@@ -1,0 +1,36 @@
+STEP:01 Initialized hono
+=> pnpm create hono@latest
+
+STEP: 02 Run hono with wrangler
+=> pnpm wrangler dev
+
+STEP: 03 Initialize Prisma
+=> pnpm add Prisma
+=> pnpm prisma init
+
+STEP : 04 Database URL setup
+=> Put neon URL in top level .env file
+=> Connection pool(accelerate URL) URL in wrangler.toml
+=> something like this :-
+{
+    [vars]
+    DATABASE_URL="...accelerate_url.."
+}
+
+STEP: 05 Model creation and create migration
+=> pnpm prisma migrate dev
+
+STEP: 06 Add the accelerate extension
+=> pnpm add @prisma/extension-accelerate
+
+.......Build Project......
+
+STEP: 07 Authenticate & deploy over cloudflare via wrangler
+=> pnpm wrangler login ( If npt logged in)
+=> pnpm wrangler whoami
+
+:- DEPLOY WORKER =>
+=> pnpm wrangler deploy
+
+
+
