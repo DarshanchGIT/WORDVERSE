@@ -1,5 +1,3 @@
-### **README for WORDVERSE**
-
 ```markdown
 # WORDVERSE
 
@@ -91,27 +89,6 @@ WORDVERSE is a full-stack blogging platform designed to provide a seamless and u
    ```bash
    pnpm dev
    ```
-
----
-
-## **Contributing**
-We welcome contributions! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add feature-name"
-   ```
-4. Push to your branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Create a pull request.
-
----
 
 ## **Future Enhancements**
 - Advanced search and filtering for blogs.
