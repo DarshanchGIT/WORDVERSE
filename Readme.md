@@ -1,4 +1,3 @@
-```markdown
 # WORDVERSE
 
 WORDVERSE is a full-stack blogging platform designed to provide a seamless and user-friendly experience for both readers and writers. With a rich set of features, it empowers users to explore, create, and manage blogs effortlessly.
