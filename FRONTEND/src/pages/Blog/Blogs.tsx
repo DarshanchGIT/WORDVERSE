@@ -5,8 +5,6 @@ import { useBlogs } from "../../hooks/blog";
 
 export const Blogs = () => {
   const { blogs, loading } = useBlogs();
-  // console.log(blogs);
-
   return (
     <div className="min-h-screen bg-black text-white">
       <Header />

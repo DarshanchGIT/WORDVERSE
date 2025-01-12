@@ -72,7 +72,6 @@ export const HandleVote = async (
   }
   try {
     console.log("voteType: ", voteType);
-    console.log(authToken);
     const { data } = await axios.post(
       `${backendURL}/blog/${voteType}/${id}`,
       {},

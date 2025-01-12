@@ -22,7 +22,6 @@ export const SignUp = () => {
     setLoading(true);
     setError("");
     try {
-      console.log(name, email, password);
       await Signup({ name, email, password });
       navigate(redirectUrl);
     } catch (error) {

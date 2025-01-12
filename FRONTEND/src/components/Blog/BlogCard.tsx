@@ -25,7 +25,7 @@ import telegramIcon from "../../assets/telegramIcon.gif";
 import whatsappIcon from "../../assets/whatsappIcon.gif";
 import twitterIcon from "../../assets/twitterIcon.gif";
 import pinterestIcon from "../../assets/pinterestIcon.gif";
-import { backendURL, shareURL } from "../../config/env";
+import { shareURL } from "../../config/env";
 
 interface BlogCardProps {
   id: string;
@@ -80,7 +80,6 @@ export const BlogCard = ({
         setLikes((prevLikes: number) => prevLikes - 1);
         setLiked(false);
       }
-      console.log(backendURL);
       HandleVote(id, newVoteType);
     } catch (error) {
       console.error("Confetti/Like button error:", error);
