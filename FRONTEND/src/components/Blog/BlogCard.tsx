@@ -25,6 +25,7 @@ import telegramIcon from "../../assets/telegramIcon.gif";
 import whatsappIcon from "../../assets/whatsappIcon.gif";
 import twitterIcon from "../../assets/twitterIcon.gif";
 import pinterestIcon from "../../assets/pinterestIcon.gif";
+import { shareURL } from "../../config/env";
 
 interface BlogCardProps {
   id: string;
@@ -86,12 +87,12 @@ export const BlogCard = ({
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`https://yourwebsite.com/blog?id=${id}`);
+    navigator.clipboard.writeText(`${shareURL}/blog?id=${id}`);
     setCopyText("Copied!");
     setTimeout(() => setCopyText("Copy Link"), 3000);
   };
 
-  const shareUrl = `https://yourwebsite.com/blog?id=${id}`;
+  console.log(shareURL);
 
   return (
     <div className="bg-gray-800/50 rounded-lg p-6 hover:bg-gray-800/70 transition-colors cursor-pointer">
@@ -176,21 +177,21 @@ export const BlogCard = ({
 
             <PopoverContent className="w-50 p-3 bg-white/10 backdrop-blur-lg border-gray-600 border-2 rounded-full transform translate-y-2">
               <div className="flex space-x-3 justify-start items-center">
-                <WhatsappShareButton url={shareUrl} title={title}>
+                <WhatsappShareButton url={shareURL} title={title}>
                   <img
                     src={whatsappIcon}
                     alt="WhatsApp"
                     className="w-7 h-7 rounded-full mx-auto hover:scale-110 transition-transform"
                   />
                 </WhatsappShareButton>
-                <TelegramShareButton url={shareUrl} title={title}>
+                <TelegramShareButton url={shareURL} title={title}>
                   <img
                     src={telegramIcon}
                     alt="Telegram"
                     className="w-7 h-7 rounded-full mx-auto hover:scale-110 transition-transform"
                   />
                 </TelegramShareButton>
-                <TwitterShareButton url={shareUrl} title={title}>
+                <TwitterShareButton url={shareURL} title={title}>
                   <img
                     src={twitterIcon}
                     alt="Twitter"
@@ -198,7 +199,7 @@ export const BlogCard = ({
                   />
                 </TwitterShareButton>
                 <PinterestShareButton
-                  url={shareUrl}
+                  url={shareURL}
                   media="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   title={title}
                 >
