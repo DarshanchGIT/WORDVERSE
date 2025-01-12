@@ -5,9 +5,12 @@ import { Signup } from "../../services/Authservices";
 import { ThreeDots } from "react-loader-spinner";
 import { Pen, WandSparkles } from "lucide-react";
 import bg from "../../assets/bg.mp4";
+import { useRedirectUrl } from "../../utils/redicrectUtils";
 
 export const SignUp = () => {
   const navigate = useNavigate();
+  const redirectUrl = useRedirectUrl();
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -19,9 +22,9 @@ export const SignUp = () => {
     setLoading(true);
     setError("");
     try {
-      console.log(name, email, password)
+      console.log(name, email, password);
       await Signup({ name, email, password });
-      navigate("/signin");
+      navigate(redirectUrl);
     } catch (error) {
       setError("Failed to sign up. Please try again.");
       console.log(error);

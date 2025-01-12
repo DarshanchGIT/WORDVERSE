@@ -4,9 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Signin } from "../../services/Authservices";
 import { ThreeDots } from "react-loader-spinner";
 import bg from "../../assets/bg.mp4";
+import { useRedirectUrl, useSignupRedirect } from "../../utils/redicrectUtils";
 
 export const SignIn = () => {
   const navigate = useNavigate();
+  const redirectUrl = useRedirectUrl();
+  const navigateToSignup = useSignupRedirect();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,10 +22,10 @@ export const SignIn = () => {
     setError("");
     try {
       await Signin({ email, password });
-      navigate("/blogs");
+      navigate(redirectUrl, { replace: true });
     } catch (error) {
       setError("Failed to sign in. Please try again.");
-      console.log(error);
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -38,8 +42,7 @@ export const SignIn = () => {
         className="absolute top-0 left-0 w-full h-full object-cover"
       ></video>
       {/* Dark Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-75"></div>{" "}
-      {/* Adjust opacity here */}
+      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-75"></div>
       <div className="min-h-screen flex items-center justify-center p-6 relative z-10">
         <div
           className="absolute top-6 left-6 flex items-center space-x-2 cursor-pointer"
@@ -131,7 +134,7 @@ export const SignIn = () => {
           <p className="mt-6 text-center text-sm text-gray-400">
             Don't have an account?{" "}
             <button
-              onClick={() => navigate("/signup")}
+              onClick={navigateToSignup}
               className="font-medium text-indigo-600 hover:text-indigo-500"
             >
               Sign up

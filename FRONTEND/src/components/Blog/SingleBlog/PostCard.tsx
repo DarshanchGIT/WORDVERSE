@@ -24,6 +24,7 @@ import twitterIcon from "../../../assets/twitterIcon.gif";
 import pinterestIcon from "../../../assets/pinterestIcon.gif";
 import NumberTicker from "../../ui/number-ticker";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
+import { shareURL } from "../../../config/env";
 
 interface Blog {
   id: string;
@@ -78,7 +79,7 @@ export const PostCard = ({ blog }: PostCardProps) => {
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`https://yourwebsite.com/blog?id=${blog.id}`);
+    navigator.clipboard.writeText(`${shareURL}/blog?id=${blog.id}`);
     setCopyText("Copied!");
     setTimeout(() => setCopyText("Copy Link"), 3000);
   };
@@ -90,8 +91,6 @@ export const PostCard = ({ blog }: PostCardProps) => {
     month: "2-digit",
     year: "numeric",
   });
-
-  const shareUrl = `https://yourwebsite.com/blog?id=${blog.id}`;
 
   return (
     <article className="max-w-4xl mx-auto px-4 pt-24 pb-12">
@@ -157,21 +156,21 @@ export const PostCard = ({ blog }: PostCardProps) => {
 
             <PopoverContent className="w-50 p-3 bg-white/10 backdrop-blur-lg border-gray-600 border-2 rounded-full transform translate-y-2">
               <div className="flex space-x-3 justify-start items-center">
-                <WhatsappShareButton url={shareUrl} title={blog.title}>
+                <WhatsappShareButton url={shareURL} title={blog.title}>
                   <img
                     src={whatsappIcon}
                     alt="WhatsApp"
                     className="w-7 h-7 rounded-full mx-auto hover:scale-110 transition-transform"
                   />
                 </WhatsappShareButton>
-                <TelegramShareButton url={shareUrl} title={blog.title}>
+                <TelegramShareButton url={shareURL} title={blog.title}>
                   <img
                     src={telegramIcon}
                     alt="Telegram"
                     className="w-7 h-7 rounded-full mx-auto hover:scale-110 transition-transform"
                   />
                 </TelegramShareButton>
-                <TwitterShareButton url={shareUrl} title={blog.title}>
+                <TwitterShareButton url={shareURL} title={blog.title}>
                   <img
                     src={twitterIcon}
                     alt="Twitter"
@@ -179,7 +178,7 @@ export const PostCard = ({ blog }: PostCardProps) => {
                   />
                 </TwitterShareButton>
                 <PinterestShareButton
-                  url={shareUrl}
+                  url={shareURL}
                   media="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   title={blog.title}
                 >

@@ -1,12 +1,19 @@
 import { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 export const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const token = localStorage.getItem("authToken");
+  // const token = localStorage.getItem("authToken");
+  const isLoggedIn = !!localStorage.getItem("authToken");
+  const location = useLocation();
 
-  if (!token) {
-    return <Navigate to="/signin" />;
+  if (!isLoggedIn) {
+    return (
+      <Navigate
+        to={`/signin?redirect=${encodeURIComponent(
+          location.pathname + location.search
+        )}`}
+      />
+    );
   }
-
   return <>{children}</>;
 };
