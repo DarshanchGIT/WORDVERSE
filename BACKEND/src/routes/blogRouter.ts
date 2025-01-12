@@ -37,6 +37,10 @@ blogRouter.get("/bulk", async (c) => {
             upvotes: true,
           },
         },
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     return c.json(
@@ -91,6 +95,7 @@ blogRouter.get("/:id", async (c) => {
             upvotes: true,
           },
         },
+        createdAt: true,
       },
     });
     return c.json(

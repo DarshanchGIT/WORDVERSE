@@ -13,6 +13,7 @@ interface Blog {
   _count: {
     upvotes: number;
   };
+  createdAt: string;
 }
 
 interface BlogResponse {

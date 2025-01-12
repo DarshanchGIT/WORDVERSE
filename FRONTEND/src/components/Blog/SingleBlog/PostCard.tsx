@@ -28,7 +28,7 @@ interface Blog {
   author: {
     name: string;
   };
-  date?: string;
+  createdAt?: string;
   readTime?: string;
   category?: string;
   _count: {
@@ -79,14 +79,6 @@ export const PostCard = ({ blog }: PostCardProps) => {
     setTimeout(() => setCopyState(false), 1200); // Reset after 1.2s
   };
 
-  const formattedDate = new Date(blog.date || Date.now()).toLocaleString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
-
   return (
     <article className="max-w-4xl mx-auto px-4 pt-24 pb-12">
       {/* Author info and metadata */}
@@ -106,7 +98,23 @@ export const PostCard = ({ blog }: PostCardProps) => {
             <div className="flex items-center space-x-4 text-sm text-gray-400 mt-1">
               <span className="flex items-center">
                 <CalendarDays className="h-4 w-4 mr-1" />
-                {formattedDate}
+                {blog.createdAt
+                  ? new Date(blog.createdAt).toLocaleString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })
+                  : new Date().toLocaleString("en-GB", {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: true,
+                    })}
               </span>
               <span className="flex items-center">
                 <Clock className="h-4 w-4 mr-1" />

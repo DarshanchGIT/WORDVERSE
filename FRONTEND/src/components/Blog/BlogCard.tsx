@@ -38,7 +38,7 @@ interface BlogCardProps {
   _count: {
     upvotes: number;
   };
-  date?: string;
+  createdAt?: string;
   readTime?: string;
   category?: string;
 }
@@ -48,7 +48,7 @@ export const BlogCard = ({
   title,
   content,
   author,
-  date,
+  createdAt,
   readTime,
   category,
   _count,
@@ -98,20 +98,27 @@ export const BlogCard = ({
     <div className="bg-gray-900 rounded-lg p-6 hover:bg-gray-900/95 transition-colors cursor-pointer ">
       <div className="flex items-center space-x-4 mb-4">
         <Avatar className="bg-gray-600 w-12 h-12 flex items-center justify-center text-white">
-          <AvatarFallback className="text-xl font-bold text-gray-800">
+          <AvatarFallback className="text-lg font-bold text-gray-800">
             {getInitials(author.name)}
           </AvatarFallback>
         </Avatar>
-        <div className="flex items-center text-sm text-gray-400">
-          <span className="font-medium text-gray-200">{author.name}</span>
-          <span className="mx-2">·</span>
-          <span>
-            {date ||
-              new Date().toLocaleDateString("en-GB", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-              })}
+        <div>
+          <div className="flex items-center text-lg text-gray-400">
+            <span className="font-medium text-gray-200">{author.name}</span>
+          </div>
+          <span className="text-sm text-gray-400">
+            Posted at{" "}
+            {createdAt
+              ? new Date(createdAt).toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })
+              : new Date().toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })}
           </span>
         </div>
       </div>

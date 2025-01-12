@@ -21,6 +21,7 @@ model Post {
   title     String
   content   String
   published Boolean   @default(false)
+  createdAt DateTime  @default(now())
   authorId  String
   upvotes   Upvotes[]
   author    User      @relation(fields: [authorId], references: [id])
@@ -31,7 +32,7 @@ model Upvotes {
   userId String
   postId String
   user   User   @relation(fields: [userId], references: [id])
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   //this will only allow unique users to like posts
   @@unique([userId, postId])
