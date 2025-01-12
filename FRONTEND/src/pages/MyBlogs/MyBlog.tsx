@@ -1,7 +1,7 @@
-import { Header } from "../../components/Blog/Header";
 import { MyBlogCard } from "../../components/Blog/MyBlogs/MyBlogCard";
 import { useUser } from "../../hooks/user";
 import partyPopper from "../../assets/partyPopper.gif";
+import { MyBlogHeader } from "../../components/Blog/MyBlogs/MyBlogHeader";
 
 interface Blog {
   id: string;
@@ -14,7 +14,8 @@ export const MyBlogs = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Header />
+      {/* <Header /> */}
+      <MyBlogHeader />
 
       {/* Main content */}
       <main className="pt-28 pb-10">

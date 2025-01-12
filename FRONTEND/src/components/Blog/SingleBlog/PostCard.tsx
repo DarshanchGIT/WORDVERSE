@@ -16,6 +16,7 @@ import whatsappIcon from "../../../assets/whatsapp.png";
 import twitterIcon from "../../../assets/twitter.png";
 import pinterestIcon from "../../../assets/pinterest.png";
 import copyIcon from "../../../assets/link.png";
+import { Check } from "lucide-react"; // Add the Check icon import
 import NumberTicker from "../../ui/number-ticker";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { shareURL } from "../../../config/env";
@@ -42,7 +43,7 @@ interface PostCardProps {
 export const PostCard = ({ blog }: PostCardProps) => {
   const [likes, setLikes] = useState(blog._count.upvotes || 0);
   const [liked, setLiked] = useState(false);
-  const [copyText, setCopyText] = useState("Copy Link");
+  const [copyState, setCopyState] = useState(false); // Track copy state
 
   const getInitials = (name: string): string =>
     name
@@ -74,8 +75,8 @@ export const PostCard = ({ blog }: PostCardProps) => {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(`${shareURL}/blog?id=${blog.id}`);
-    setCopyText("Copied!");
-    setTimeout(() => setCopyText("Copy Link"), 3000);
+    setCopyState(true);
+    setTimeout(() => setCopyState(false), 1200); // Reset after 1.2s
   };
 
   const formattedDate = new Date(blog.date || Date.now()).toLocaleString([], {
@@ -101,10 +102,6 @@ export const PostCard = ({ blog }: PostCardProps) => {
               <h3 className="font-medium text-lg text-white">
                 {blog.author.name}
               </h3>
-              <span className="text-gray-400">·</span>
-              <button className="text-indigo-400 hover:text-indigo-300 text-sm">
-                Follow
-              </button>
             </div>
             <div className="flex items-center space-x-4 text-sm text-gray-400 mt-1">
               <span className="flex items-center">
@@ -148,7 +145,7 @@ export const PostCard = ({ blog }: PostCardProps) => {
               </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="w-50 p-3 bg-white/10 backdrop-blur-lg border-gray-600 border-2 rounded-full transform translate-y-2">
+            <PopoverContent className="w-50 p-3 bg-gray-800 backdrop-blur-lg border-gray-600 border-2 rounded-full transform translate-y-2">
               <div className="flex space-x-3 justify-start items-center">
                 <WhatsappShareButton url={shareURL} title={blog.title}>
                   <img
@@ -183,15 +180,18 @@ export const PostCard = ({ blog }: PostCardProps) => {
                   />
                 </PinterestShareButton>
 
-                <img
-                  src={copyIcon}
-                  onClick={handleCopyLink}
-                  alt="Pinterest"
-                  className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
-                />
-                <span className="text-gray-400 text-xs font-semibold">
-                  {copyText}
-                </span>
+                <div className="relative">
+                  {copyState ? (
+                    <Check className="h-7 w-7 text-white scale-110 transition-transform" />
+                  ) : (
+                    <img
+                      src={copyIcon}
+                      onClick={handleCopyLink}
+                      alt="Copy Link"
+                      className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
+                    />
+                  )}
+                </div>
               </div>
             </PopoverContent>
           </Popover>

@@ -52,7 +52,7 @@ export const SignUp = () => {
             navigate("/");
           }}
         >
-          <ArrowLeft className="h-8 w-8 text-white" />
+          <ArrowLeft className="h-8 w-8 text-white hover:scale-110 transition-transform mr-2" />
           <Pen className="h-8 w-8 text-indigo-500" />
           <span className="ml-2 text-xl font-bold text-white">Wordverse</span>
         </div>

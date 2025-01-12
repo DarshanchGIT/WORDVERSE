@@ -2,7 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { Clock, BookmarkPlus, ArrowRight, Heart, Send } from "lucide-react";
+import {
+  Clock,
+  BookmarkPlus,
+  ArrowRight,
+  Heart,
+  Send,
+  Check,
+} from "lucide-react";
 import DOMPurify from "dompurify";
 import NumberTicker from "../ui/number-ticker";
 import { LikedButtonEffect } from "../ui/buttonEffect";
@@ -46,8 +53,7 @@ export const BlogCard = ({
   category,
   _count,
 }: BlogCardProps) => {
-  const [copyText, setCopyText] = useState("Copy Link");
-
+  const [copyState, setCopyState] = useState(false);
   const navigate = useNavigate();
   const [likes, setLikes] = useState(_count.upvotes || 0);
   const [liked, setLiked] = useState(false);
@@ -79,15 +85,17 @@ export const BlogCard = ({
       console.error("Confetti/Like button error:", error);
     }
   };
+
   const shareLink = `${shareURL}/blog?id=${id}`;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(shareLink);
-    setCopyText("Copied!");
-    setTimeout(() => setCopyText("Copy Link"), 3000);
+    setCopyState(true);
+    setTimeout(() => setCopyState(false), 1200);
   };
+
   return (
-    <div className="bg-gray-800/50 rounded-lg p-6 hover:bg-gray-800/70 transition-colors cursor-pointer ">
+    <div className="bg-gray-900 rounded-lg p-6 hover:bg-gray-900/95 transition-colors cursor-pointer ">
       <div className="flex items-center space-x-4 mb-4">
         <Avatar className="bg-gray-600 w-12 h-12 flex items-center justify-center text-white">
           <AvatarFallback className="text-xl font-bold text-gray-800">
@@ -154,7 +162,6 @@ export const BlogCard = ({
             />
           </Button>
 
-          {/* Share Button */}
           <Popover>
             <PopoverTrigger asChild>
               <Button className="text-gray-400 hover:text-indigo-400 rounded-full transition-transform border-gray-700 border-2">
@@ -163,7 +170,7 @@ export const BlogCard = ({
               </Button>
             </PopoverTrigger>
 
-            <PopoverContent className="w-50 p-3 bg-white/10 backdrop-blur-lg border-gray-600 border-2 rounded-full transform translate-y-2">
+            <PopoverContent className="w-50 p-3 bg-gray-800  border-gray-600 border-2 rounded-full transform translate-y-2">
               <div className="flex space-x-3 justify-start items-center">
                 <WhatsappShareButton url={shareLink} title={title}>
                   <img
@@ -197,27 +204,22 @@ export const BlogCard = ({
                     className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
                   />
                 </PinterestShareButton>
-
-                {/* <Button
-                  size="icon"
-                  onClick={handleCopyLink}
-                  className="hover:scale-110 transform-none"
-                  > */}
-                <img
-                  src={copyIcon}
-                  onClick={handleCopyLink}
-                  alt="Pinterest"
-                  className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
-                />
-                {/* </Button> */}
-                <span className="text-gray-400 text-xs font-semibold">
-                  {copyText}
-                </span>
+                <div className="relative">
+                  {!copyState ? (
+                    <img
+                      src={copyIcon}
+                      onClick={handleCopyLink}
+                      alt="Copy Link"
+                      className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
+                    />
+                  ) : (
+                    <Check className="h-5 w-5 text-white scale-110 transition-transform" />
+                  )}
+                </div>
               </div>
             </PopoverContent>
           </Popover>
 
-          {/* Bookmark Button */}
           <Button
             variant="ghost"
             size="icon"

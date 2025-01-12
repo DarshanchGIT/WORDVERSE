@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Avatar } from "../../ui/avatar";
 import { Button } from "../../ui/button";
 import {
+  Search,
   Pen,
   Plus,
   ChevronDown,
@@ -11,13 +12,13 @@ import {
   LogOut,
   Menu,
   X,
-  ArrowLeft,
+  ArrowLeft
 } from "lucide-react";
 import { useUser } from "../../../hooks/user";
 import { Spinner } from "../../ui/Spinner";
 import { Logout } from "../../../services/Authservices";
 
-export const Header = () => {
+export const MyBlogHeader = () => {
   const navigate = useNavigate();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,15 +44,25 @@ export const Header = () => {
               className="flex items-center cursor-pointer"
               onClick={() => navigate("/blogs")}
             >
-              <ArrowLeft className="h-6 w-6 text-white hover:scale-110 transition-transform mr-2" />
+              {" "}
+              <ArrowLeft className="h-8 w-8 text-white hover:scale-110 transition-transform mr-2" />
               <Pen className="h-8 w-8 text-indigo-500" />
               <span className="ml-2 text-xl font-bold text-white">
                 Wordverse
               </span>
             </div>
+
+            <div className="relative w-40 hidden sm:block">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search articles..."
+                className="w-full bg-gray-800 rounded-full pl-10 pr-4 py-2 text-sm text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+            </div>
           </div>
 
-          <div className="flex items-center space-x-4 ">
+          <div className="flex items-center space-x-4">
             <Button
               variant="default"
               className="flex items-center space-x-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-full sm:flex"
@@ -60,7 +71,7 @@ export const Header = () => {
               <Plus className="h-4 w-4" />
               <span>Create your own blog</span>
             </Button>
-            <div className="relative">
+            <div className="relative hidden sm:block">
               <div
                 className="flex items-center space-x-2 cursor-pointer"
                 onClick={toggleDialog}
@@ -68,16 +79,16 @@ export const Header = () => {
                 <Avatar className="h-8 w-8">
                   <img
                     src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg"
-                    alt="current_user"
+                    alt="User avatar"
                     className="object-cover"
                   />
                 </Avatar>
                 <span className="text-lg font-medium text-white flex items-center space-x-2">
-                  <span className="text-indigo-400 text-sm ">Hello, </span>
-                  {!loading ? (
-                    <span>{currentUser?.name || "Guest"}</span>
-                  ) : (
+                  <span className="text-indigo-400 text-sm">Hello, </span>
+                  {loading ? (
                     <Spinner />
+                  ) : (
+                    <span>{currentUser ? currentUser.name : "Guest"}</span>
                   )}
                 </span>
                 {isDialogOpen ? (
@@ -105,7 +116,7 @@ export const Header = () => {
                       onClick={handleLogout}
                     >
                       <LogOut className="h-4 w-4 text-red-500" />
-                      <span>Logout</span>
+                      <span className="hover:text-red-500">Logout</span>
                     </li>
                   </ul>
                 </div>
