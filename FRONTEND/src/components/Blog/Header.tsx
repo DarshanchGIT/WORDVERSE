@@ -89,9 +89,9 @@ export const Header = () => {
                   )}
                 </span>
                 {isDialogOpen ? (
-                  <ChevronUp className="h-4 w-4 text-white" />
+                  <ChevronUp className="h-4 w-4 text-white hover:scale-150 transition-transform" />
                 ) : (
-                  <ChevronDown className="h-4 w-4 text-white" />
+                  <ChevronDown className="h-4 w-4 text-white hover:scale-150 transition-transform" />
                 )}
               </div>
               {isDialogOpen && (

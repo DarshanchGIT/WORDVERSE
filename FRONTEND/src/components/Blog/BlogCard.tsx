@@ -2,14 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { Button } from "../ui/button";
-import {
-  Clock,
-  BookmarkPlus,
-  ArrowRight,
-  Heart,
-  Share,
-  Copy,
-} from "lucide-react";
+import { Clock, BookmarkPlus, ArrowRight, Heart, Send } from "lucide-react";
 import DOMPurify from "dompurify";
 import NumberTicker from "../ui/number-ticker";
 import { LikedButtonEffect } from "../ui/buttonEffect";
@@ -21,10 +14,11 @@ import {
   PinterestShareButton,
 } from "react-share";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import telegramIcon from "../../assets/telegramIcon.gif";
-import whatsappIcon from "../../assets/whatsappIcon.gif";
-import twitterIcon from "../../assets/twitterIcon.gif";
-import pinterestIcon from "../../assets/pinterestIcon.gif";
+import telegramIcon from "../../assets/telegram.png";
+import whatsappIcon from "../../assets/whatsapp.png";
+import twitterIcon from "../../assets/twitter.png";
+import pinterestIcon from "../../assets/pinterest.png";
+import copyIcon from "../../assets/link.png";
 import { shareURL } from "../../config/env";
 
 interface BlogCardProps {
@@ -85,17 +79,15 @@ export const BlogCard = ({
       console.error("Confetti/Like button error:", error);
     }
   };
+  const shareLink = `${shareURL}/blog?id=${id}`;
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(`${shareURL}/blog?id=${id}`);
+    navigator.clipboard.writeText(shareLink);
     setCopyText("Copied!");
     setTimeout(() => setCopyText("Copy Link"), 3000);
   };
-
-  console.log(shareURL);
-
   return (
-    <div className="bg-gray-800/50 rounded-lg p-6 hover:bg-gray-800/70 transition-colors cursor-pointer">
+    <div className="bg-gray-800/50 rounded-lg p-6 hover:bg-gray-800/70 transition-colors cursor-pointer ">
       <div className="flex items-center space-x-4 mb-4">
         <Avatar className="bg-gray-600 w-12 h-12 flex items-center justify-center text-white">
           <AvatarFallback className="text-xl font-bold text-gray-800">
@@ -162,36 +154,32 @@ export const BlogCard = ({
             />
           </Button>
 
-          {/* <Button variant="ghost" size="icon" className="text-gray-400">
-            <BookmarkPlus className="h-5 w-5" />
-          </Button> */}
-
           {/* Share Button */}
           <Popover>
             <PopoverTrigger asChild>
               <Button className="text-gray-400 hover:text-indigo-400 rounded-full transition-transform border-gray-700 border-2">
-                <Share className="h-5 w-5" />
+                <Send className="h-5 w-5" />
                 <span className="text-white">Share</span>
               </Button>
             </PopoverTrigger>
 
             <PopoverContent className="w-50 p-3 bg-white/10 backdrop-blur-lg border-gray-600 border-2 rounded-full transform translate-y-2">
               <div className="flex space-x-3 justify-start items-center">
-                <WhatsappShareButton url={shareURL} title={title}>
+                <WhatsappShareButton url={shareLink} title={title}>
                   <img
                     src={whatsappIcon}
                     alt="WhatsApp"
                     className="w-7 h-7 rounded-full mx-auto hover:scale-110 transition-transform"
                   />
                 </WhatsappShareButton>
-                <TelegramShareButton url={shareURL} title={title}>
+                <TelegramShareButton url={shareLink} title={title}>
                   <img
                     src={telegramIcon}
                     alt="Telegram"
                     className="w-7 h-7 rounded-full mx-auto hover:scale-110 transition-transform"
                   />
                 </TelegramShareButton>
-                <TwitterShareButton url={shareURL} title={title}>
+                <TwitterShareButton url={shareLink} title={title}>
                   <img
                     src={twitterIcon}
                     alt="Twitter"
@@ -199,30 +187,37 @@ export const BlogCard = ({
                   />
                 </TwitterShareButton>
                 <PinterestShareButton
-                  url={shareURL}
+                  url={shareLink}
                   media="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   title={title}
                 >
                   <img
                     src={pinterestIcon}
                     alt="Pinterest"
-                    className="w-7 h-7 mx-auto hover:scale-110 transition-transform"
+                    className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
                   />
                 </PinterestShareButton>
 
-                <Button
+                {/* <Button
                   size="icon"
                   onClick={handleCopyLink}
                   className="hover:scale-110 transform-none"
-                >
-                  <Copy className="h-7 w-7 mx-auto text-white hover:text-black" />
-                </Button>
+                  > */}
+                <img
+                  src={copyIcon}
+                  onClick={handleCopyLink}
+                  alt="Pinterest"
+                  className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
+                />
+                {/* </Button> */}
                 <span className="text-gray-400 text-xs font-semibold">
                   {copyText}
                 </span>
               </div>
             </PopoverContent>
           </Popover>
+
+          {/* Bookmark Button */}
           <Button
             variant="ghost"
             size="icon"

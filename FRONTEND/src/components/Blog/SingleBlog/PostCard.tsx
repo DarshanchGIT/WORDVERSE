@@ -1,14 +1,7 @@
 import { useState } from "react";
 import { Avatar, AvatarFallback } from "../../ui/avatar";
 import { Button } from "../../ui/button";
-import {
-  CalendarDays,
-  Clock,
-  Heart,
-  Share,
-  Copy,
-  BookmarkPlus,
-} from "lucide-react";
+import { CalendarDays, Clock, Heart, Send, BookmarkPlus } from "lucide-react";
 import DOMPurify from "dompurify";
 import { LikedButtonEffect } from "../../ui/buttonEffect";
 import { HandleVote } from "../../../services/BlogServices";
@@ -18,10 +11,11 @@ import {
   TwitterShareButton,
   PinterestShareButton,
 } from "react-share";
-import telegramIcon from "../../../assets/telegramIcon.gif";
-import whatsappIcon from "../../../assets/whatsappIcon.gif";
-import twitterIcon from "../../../assets/twitterIcon.gif";
-import pinterestIcon from "../../../assets/pinterestIcon.gif";
+import telegramIcon from "../../../assets/telegram.png";
+import whatsappIcon from "../../../assets/whatsapp.png";
+import twitterIcon from "../../../assets/twitter.png";
+import pinterestIcon from "../../../assets/pinterest.png";
+import copyIcon from "../../../assets/link.png";
 import NumberTicker from "../../ui/number-ticker";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { shareURL } from "../../../config/env";
@@ -149,7 +143,7 @@ export const PostCard = ({ blog }: PostCardProps) => {
           <Popover>
             <PopoverTrigger asChild>
               <Button className="text-gray-400 hover:text-indigo-400 rounded-full transition-transform border-gray-700 border-2">
-                <Share className="h-5 w-5" />
+                <Send className="h-5 w-5" />
                 <span className="text-white">Share</span>
               </Button>
             </PopoverTrigger>
@@ -189,13 +183,12 @@ export const PostCard = ({ blog }: PostCardProps) => {
                   />
                 </PinterestShareButton>
 
-                <Button
-                  size="icon"
+                <img
+                  src={copyIcon}
                   onClick={handleCopyLink}
-                  className="hover:scale-110 transform-none"
-                >
-                  <Copy className="h-7 w-7 mx-auto text-white hover:text-black" />
-                </Button>
+                  alt="Pinterest"
+                  className="w-7 h-7 mx-auto cursor-pointer hover:scale-110 transition-transform"
+                />
                 <span className="text-gray-400 text-xs font-semibold">
                   {copyText}
                 </span>
@@ -212,7 +205,7 @@ export const PostCard = ({ blog }: PostCardProps) => {
         </div>
       </div>
 
-      {/* Title and Content in White Block */}
+      {/* Title and Content */}
       <div className="bg-white rounded-lg p-6 shadow-lg">
         <h1 className="text-4xl font-bold text-black mb-6 leading-tight">
           {blog.title}
@@ -221,18 +214,6 @@ export const PostCard = ({ blog }: PostCardProps) => {
           className="prose max-w-none text-black"
           dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         ></div>
-      </div>
-
-      {/* Author bio (outside the white block) */}
-      <div className="mt-12 pt-8 border-t border-gray-800">
-        <div className="flex items-start space-x-4">
-          <div>
-            <h3 className="font-medium text-lg text-white mb-2">
-              Written by {blog.author.name}
-            </h3>
-            <p className="text-gray-400">THIS_IS_A_SAMPLE_BIO_OF_AUTHOR</p>
-          </div>
-        </div>
       </div>
     </article>
   );

@@ -11,6 +11,7 @@ import {
   LogOut,
   Menu,
   X,
+  ArrowLeft,
 } from "lucide-react";
 import { useUser } from "../../../hooks/user";
 import { Spinner } from "../../ui/Spinner";
@@ -42,6 +43,7 @@ export const Header = () => {
               className="flex items-center cursor-pointer"
               onClick={() => navigate("/blogs")}
             >
+              <ArrowLeft className="h-6 w-6 text-white hover:scale-110 transition-transform" />
               <Pen className="h-8 w-8 text-indigo-500" />
               <span className="ml-2 text-xl font-bold text-white">
                 Wordverse
@@ -49,7 +51,7 @@ export const Header = () => {
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 ">
             <Button
               variant="default"
               className="flex items-center space-x-2 px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-full sm:flex"
@@ -71,7 +73,7 @@ export const Header = () => {
                   />
                 </Avatar>
                 <span className="text-lg font-medium text-white flex items-center space-x-2">
-                  <span className="text-indigo-400 text-sm">Hello, </span>
+                  <span className="text-indigo-400 text-sm ">Hello, </span>
                   {!loading ? (
                     <span>{currentUser?.name || "Guest"}</span>
                   ) : (
@@ -79,9 +81,9 @@ export const Header = () => {
                   )}
                 </span>
                 {isDialogOpen ? (
-                  <ChevronUp className="h-4 w-4 text-white" />
+                  <ChevronUp className="h-4 w-4 text-white hover:scale-150 transition-transform" />
                 ) : (
-                  <ChevronDown className="h-4 w-4 text-white" />
+                  <ChevronDown className="h-4 w-4 text-white hover:scale-150 transition-transform" />
                 )}
               </div>
               {isDialogOpen && (
