@@ -47,13 +47,12 @@ export const DeleteBlog = async (id: string): Promise<void> => {
   }
 
   try {
-    const { data } = await axios.delete(`${backendURL}/blog/${id}`, {
+    await axios.delete(`${backendURL}/blog/${id}`, {
       headers: {
         Authorization: `Bearer ${authToken}`,
         "Content-Type": "application/json",
       },
     });
-    console.log(data);
   } catch (error) {
     console.error("Unexpected error:", error);
     throw error;
@@ -71,8 +70,7 @@ export const HandleVote = async (
     throw new Error("User is not authenticated.");
   }
   try {
-    console.log("voteType: ", voteType);
-    const { data } = await axios.post(
+    await axios.post(
       `${backendURL}/blog/${voteType}/${id}`,
       {},
       {
@@ -82,7 +80,6 @@ export const HandleVote = async (
         },
       }
     );
-    console.log(data);
   } catch (error) {
     console.error("Unexpected error:", error);
     throw error;

@@ -20,6 +20,7 @@ export const MyBlogCard = ({ id, title, content }: BlogCardProps) => {
   };
 
   const onUpdate = (id: string) => {
+    alert("feature incoming");
     console.log(`Update blog with ID: ${id}`);
   };
 
