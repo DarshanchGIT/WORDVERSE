@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -56,18 +57,41 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
-@layer base {
+
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
 
-canvas {
-  position: absolute;
-  z-index: 9999; /* Ensure it's on top of other elements */
-  pointer-events: none; /* Makes sure the canvas doesn't block clicks on other elements */
+  canvas {
+    position: absolute;
+    z-index: 9999; /* Ensure it's on top of other elements */
+    pointer-events: none; /* Makes sure the canvas doesn't block clicks on other elements */
+  }
+  /* Scrollbar styles */
+  .custom-scrollbar {
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: var(--muted) var(--background); /* For Firefox */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Scrollbar width */
+    height: 8px; /* Scrollbar height for horizontal scrollbars */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--muted); /* Scrollbar thumb color */
+    border-radius: 50%; /* Rounded corners */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground); /* Color when hovered */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--background); /* Scrollbar track color */
+    border-radius: 50%; /* Rounded corners for track */
+  }
 }

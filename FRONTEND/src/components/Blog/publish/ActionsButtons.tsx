@@ -26,7 +26,7 @@ export const ActionsButtons = ({ title, content }: BlogCreationInput) => {
   };
 
   return (
-    <div className="flex justify-end space-x-4 mt-8">
+    <div className="flex justify-end space-x-4 mt-3">
       <button
         onClick={handlePublish}
         type="submit"
