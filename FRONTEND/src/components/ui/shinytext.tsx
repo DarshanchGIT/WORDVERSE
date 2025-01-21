@@ -1,4 +1,13 @@
-export const ShinyText = ({
+import React from "react";
+
+type ShinyTextProps = {
+  text: string;
+  disabled?: boolean;
+  speed?: number;
+  className?: string;
+};
+
+export const ShinyText: React.FC<ShinyTextProps> = ({
   text,
   disabled = false,
   speed = 5,
@@ -8,7 +17,7 @@ export const ShinyText = ({
 
   return (
     <div
-      className={`text-[#ebe4e4a4] bg-clip-text inline-block ${
+      className={`text-[#b5b5b5a4] bg-clip-text inline-block ${
         disabled ? "" : "animate-shine"
       } ${className}`}
       style={{
