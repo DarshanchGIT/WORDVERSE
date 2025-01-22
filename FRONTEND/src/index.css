@@ -4,6 +4,27 @@
 @tailwind utilities;
 
 @layer base {
+  /* Shiny Text Effect */
+  .shiny-text {
+    background: linear-gradient(90deg, #f3ec78, #af4261, #f3ec78);
+
+    background-size: 200% 200%;
+    animation: shiny 3s linear infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1rem;
+    font-weight: medium;
+  }
+
+  /* Keyframes for the shiny animation */
+  @keyframes shiny {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
   :root {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;

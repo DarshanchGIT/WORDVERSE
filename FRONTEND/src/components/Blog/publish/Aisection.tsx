@@ -5,6 +5,8 @@ import { generateTextGemini } from "../../../utils/gemini";
 import { ThreeDots } from "react-loader-spinner";
 import { ShinyText } from "../../ui/shinytext";
 import { Clipboard, CheckCircle, XCircle } from "lucide-react";
+import "../../../index.css";
+import { TypeAnimation } from "react-type-animation";
 
 export const Aisection = () => {
   const [prompt, setPrompt] = useState("");
@@ -17,6 +19,7 @@ export const Aisection = () => {
 
   const promptGenerate = async () => {
     setLoading(true);
+    setGeneratedTextState("");
     const response = await generateTextGemini(prompt);
     console.log(response);
     setShowGeneratedText(true);
@@ -59,7 +62,7 @@ export const Aisection = () => {
             placeholder="Enter your prompt here"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
-            className="bg-gray-700 border-gray-600 text-gray-100"
+            className="bg-gray-700 border-gray-600 text-gray-100 custom-scrollbar"
           />
 
           <button
@@ -91,20 +94,26 @@ export const Aisection = () => {
           {/* Display the generated text below the button */}
           {generatedText && showGeneratedText && (
             <div className="mt-6 flex flex-col">
-              {/* Generated text scrollable div */}
               <div
                 ref={generatedTextRef}
                 className="p-4 bg-gray-900 border border-gray-600 rounded-lg text-gray-400 relative h-48 overflow-y-auto mb-4 custom-scrollbar"
               >
-                {/* Generated text */}
-                <ShinyText
-                  className="text-sm text-gray-400 mt-4"
+                {/* <TextTyper
                   text={generatedText}
-                  speed={3}
+                  interval={10}
+                  Markup={"code"}
+                  className="text-red-600"
+                /> */}
+                <TypeAnimation
+                  sequence={[generatedText, 1000]}
+                  wrapper="span"
+                  speed={50}
+                  style={{ display: "inline-block" }}
+                  repeat={Infinity}
+                  className="shiny-text text-sm"
                 />
               </div>
 
-              {/* Buttons section (Copy and Close buttons) */}
               <div className="flex justify-start gap-4">
                 {/* Copy button */}
                 <button
