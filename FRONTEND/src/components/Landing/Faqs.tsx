@@ -8,10 +8,10 @@ export const FAQSection = () => {
   };
 
   return (
-    <section className="py-10 bg-gray-900 sm:py-16 lg:py-24">
+    <section className="py-24 bg-gray-900 sm:py-16 lg:py-24">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
             Frequently Asked Questions
           </h2>
           <p className="max-w-xl mx-auto mt-4 text-base leading-relaxed text-gray-400">
@@ -24,22 +24,27 @@ export const FAQSection = () => {
             {
               question: "How can I start a blog?",
               answer:
-                "To start a blog, simply create an account, choose a template, and start writing! You can customize your blog's design, add images, and organize posts by categories.",
+                "To start a blog, simply create an account and start writing! You can customize your blog's design, add images, and organize posts by categories.",
             },
             {
-              question: "How do I optimize my blog for SEO?",
+              question: "Can I share blogs with my friends?",
               answer:
-                "To optimize your blog for SEO, make sure your content is keyword-rich, use proper headings, include alt text for images, and ensure fast loading times for your pages.",
+                "Yes, you can easily share blogs with your friends using WhatsApp, X (formerly Twitter), Telegram, or by copying the link directly from the platform.",
             },
             {
-              question: "Can I monetize my blog?",
+              question: "Do you have a subscription model?",
               answer:
-                "Yes, you can monetize your blog through methods like affiliate marketing, sponsored posts, and selling your own products or services.",
+                "Not yet! We are actively exploring options to implement a subscription model in the future to provide more premium features for our users.",
             },
             {
-              question: "How do I get more readers for my blog?",
+              question: "Does the rich-text editor make writing blogs easier?",
               answer:
-                "To grow your readership, focus on consistently creating high-quality content, promote your blog on social media, and engage with your audience through comments and emails.",
+                "Absolutely! Our rich-text editor simplifies the blogging process by providing features like formatting, adding images, and live previews, making it easy to create professional blogs.",
+            },
+            {
+              question: "How does AI help in writing blogs?",
+              answer:
+                "Our AI-powered tools assist in generating high-quality content, providing topic suggestions, improving grammar, and optimizing blogs for SEO. This helps you create engaging posts quickly and efficiently.",
             },
           ].map((faq, index) => (
             <div
@@ -51,7 +56,7 @@ export const FAQSection = () => {
                 onClick={() => handleToggle(index)}
                 className="flex items-center justify-between w-full px-4 py-5 sm:p-6"
               >
-                <span className="flex text-lg font-semibold text-white">
+                <span className="flex text-lg font-medium text-white">
                   {faq.question}
                 </span>
 
@@ -75,38 +80,12 @@ export const FAQSection = () => {
 
               {open === index && (
                 <div className="px-4 pb-5 sm:px-6 sm:pb-6 rounded-b-lg">
-                  <p className="text-gray-300">
-                    {faq.answer}{" "}
-                    <a
-                      href="#"
-                      title=""
-                      className="text-blue-600 transition-all duration-200 hover:underline"
-                    >
-                      Learn more
-                    </a>{" "}
-                    about how to get started with blogging.
-                  </p>
+                  <p className="text-gray-300 font-normal">{faq.answer}</p>
                 </div>
               )}
             </div>
           ))}
         </div>
-
-        <p className="text-center text-gray-400 text-base mt-9">
-          Didn’t find the answer you are looking for?{" "}
-          <a
-            onClick={() =>
-              alert(
-                "Sorry, No support avaible at this moment, all officials are busy rn"
-              )
-            }
-            title=""
-            className="font-medium text-blue-600 transition-all duration-200 hover:text-blue-700 focus:text-blue-700 hover:underline cursor-pointer"
-            target="_blank"
-          >
-            Contact our support
-          </a>
-        </p>
       </div>
     </section>
   );

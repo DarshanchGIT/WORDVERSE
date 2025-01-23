@@ -1,29 +1,30 @@
 import { Navbar } from "../../components/Landing/Navbar";
-import { Features } from "../../components/Landing/Features";
-import { Testimonials } from "../../components/ui/Testimonials";
+import { Testimonials } from "../../components/Landing/Testimonials";
 import { AuroraHero } from "../../components/ui/AuroraHero";
 import { FAQSection } from "../../components/Landing/Faqs";
+import { ContactForm } from "../../components/Landing/Contact";
+import { FeatureHover } from "../../components/Landing/FeatureHover";
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gray-900 text-white">
       <section id="navbar">
         <Navbar />
       </section>
       <section id="AuroraHero">
         <AuroraHero />
       </section>
-      {/* <section id="hero">
-        <Hero />
-      </section> */}
       <section id="features">
-        <Features />
+        <FeatureHover />
       </section>
       <section id="testimonials">
         <Testimonials />
       </section>
       <section id="faqs">
         <FAQSection />
+      </section>
+      <section id="contact">
+        <ContactForm />
       </section>
     </div>
   );

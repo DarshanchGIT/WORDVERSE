@@ -11,6 +11,9 @@ importers:
       '@darshanpm/wordverse':
         specifier: ^1.0.0
         version: 1.0.0
+      '@emailjs/browser':
+        specifier: ^4.4.1
+        version: 4.4.1
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@18.3.18)(react@18.3.1)
@@ -276,6 +279,10 @@ packages:
 
   '@darshanpm/wordverse@1.0.0':
     resolution: {integrity: sha512-EJp9BJ092IgNIJZiGPBKWpL4WAfqKkQCgOTQTJakMSOMgx/XlQT2ZSqtfUoM6V450pqMTfqU012paav6xKSryA==}
+
+  '@emailjs/browser@4.4.1':
+    resolution: {integrity: sha512-DGSlP9sPvyFba3to2A50kDtZ+pXVp/0rhmqs2LmbMS3I5J8FSOgLwzY2Xb4qfKlOVHh29EAutLYwe5yuEZmEFg==}
+    engines: {node: '>=14.0.0'}
 
   '@emotion/babel-plugin@11.13.5':
     resolution: {integrity: sha512-pxHCpT2ex+0q+HH91/zsdHkw/lXd468DIN2zvfvLtPKLLMo6gQj7oLObq8PhkrxOZb/gGCq03S3Z7PDhS8pduQ==}
@@ -2990,6 +2997,8 @@ snapshots:
       '@types/node': 22.10.2
       typescript: 5.7.2
       zod: 3.24.1
+
+  '@emailjs/browser@4.4.1': {}
 
   '@emotion/babel-plugin@11.13.5':
     dependencies:

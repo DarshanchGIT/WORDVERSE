@@ -41,7 +41,7 @@ export const Header = () => {
           <div className="flex items-center space-x-4">
             <div
               className="flex items-center cursor-pointer"
-              onClick={() => navigate("/blogs")}
+              onClick={() => navigate("/")}
             >
               <Pen className="h-8 w-8 text-indigo-500" />
               <span className="ml-2 text-xl font-bold text-white">
@@ -96,7 +96,7 @@ export const Header = () => {
               </div>
               {isDialogOpen && (
                 <div
-                  className="absolute right-0 mt-5 w-48 bg-gray-800 bg-opacity-80 rounded-lg shadow-lg p-4"
+                  className="absolute right-0 mt-5 w-48 bg-white/20 backdrop-blur-lg rounded-2xl shadow-lg p-4"
                   style={{ transform: "translateY(10px)" }}
                 >
                   <ul className="space-y-2">
@@ -105,7 +105,7 @@ export const Header = () => {
                       onClick={() => navigate("/blogs/myblogs")}
                     >
                       <FileText className="h-4 w-4 text-indigo-400" />
-                      <span>My Blogs</span>
+                      <span>My Account</span>
                     </li>
                     <hr className="border-gray-600 my-2" />
                     <li
@@ -161,7 +161,7 @@ export const Header = () => {
                 }}
               >
                 <FileText className="h-5 w-5" />
-                <span>My Blogs</span>
+                <span>My Account</span>
               </div>
               <div
                 className="text-sm text-gray-200 cursor-pointer hover:text-red-400 flex items-center space-x-2"

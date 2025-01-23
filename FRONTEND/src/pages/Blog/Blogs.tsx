@@ -9,7 +9,7 @@ export const Blogs = () => {
   return (
     <div
       className="min-h-screen relative bg-cover bg-center text-white overflow-hidden"
-      style={{ backgroundImage: `url(${background})`}}
+      style={{ backgroundImage: `url(${background})` }}
     >
       <div className="absolute top-0 left-0 w-full h-full bg-black opacity-85 z-0"></div>
       <div className="sticky top-0 z-20">

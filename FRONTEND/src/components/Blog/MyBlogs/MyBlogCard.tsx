@@ -1,74 +1,73 @@
+import { Pencil, Trash2, ArrowRight } from "lucide-react";
 import DOMPurify from "dompurify";
-import { Button } from "../../ui/button";
-import { ArrowRight, Edit, Trash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { DeleteBlog } from "../../../services/BlogServices";
+import { useState } from "react";
+import { Spinner } from "../../ui/Spinner";
 
-interface BlogCardProps {
+interface BlogProps {
   id: string;
   title: string;
   content: string;
 }
 
-export const MyBlogCard = ({ id, title, content }: BlogCardProps) => {
+export const MyBlogCard = ({ id, title, content }: BlogProps) => {
   const navigate = useNavigate();
-  const sanitizedContent = DOMPurify.sanitize(content);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const onDelete = async (id: string) => {
+    setIsDeleting(true);
     await DeleteBlog(id);
-    console.log(`Blog with ID: ${id} has been deleted`);
+    setIsDeleting(false);
+    window.location.reload();
   };
 
-  const onUpdate = (id: string) => {
-    alert("feature incoming");
-    console.log(`Update blog with ID: ${id}`);
-  };
+  const sanitizedContent = DOMPurify.sanitize(content);
 
   return (
-    <div className="bg-gray-900 w-full h-[350px] rounded-lg p-4 hover:bg-gray-800/70 transition-colors flex flex-col justify-between border-4 border-white/10">
-      {/* Blog Title */}
-      <div className="space-y-4">
-        <h2 className="text-xl font-bold text-white hover:text-indigo-400 transition-colors">
-          {title}
-        </h2>
-
-        {/* Blog Content */}
-        <div className="bg-gray-700/50 p-4 rounded flex-1 overflow-hidden">
-          <p
-            className="text-gray-300 text-sm line-clamp-4"
-            dangerouslySetInnerHTML={{
-              __html: sanitizedContent,
-            }}
-          ></p>
+    <div
+      key={id}
+      className="bg-gray-900 rounded-lg p-6 shadow-lg transition-all hover:shadow-xl"
+    >
+      <div className="flex justify-between items-start">
+        <div>
+          <h3 className="text-xl font-semibold">{title}</h3>
         </div>
-
-        {/* Read more link */}
-        <div
-          className="text-indigo-400 hover:underline flex items-center mt-2 cursor-pointer"
-          onClick={() => navigate(`/blog?id=${id}`)}
-        >
-          Read More <ArrowRight className="ml-1" size={18} />
+        <div className="flex space-x-3">
+          {/* Update Blog Button */}
+          <button
+            disabled
+            className="flex items-center space-x-1 text-gray-500 rounded-full p-3 transition-colors cursor-not-allowed"
+            title="This feature is under development"
+          >
+            <Pencil className="w-5 h-5" />
+          </button>
+          {/* Delete Blog Button */}
+          <button
+            onClick={() => onDelete(id)}
+            className="flex items-center space-x-1 hover:text-red-400 text-white rounded-full p-3 transition-colors hover:bg-gray-700"
+            disabled={isDeleting}
+            title="Delete"
+          >
+            {isDeleting ? (
+              <Spinner />
+            ) : (
+              <Trash2 className="w-5 h-5 hover:scale-110 transition-transform" />
+            )}
+          </button>
         </div>
       </div>
-
-      {/* Buttons */}
-      <div className="flex justify-between mt-4 pb-1">
-        <Button
-          variant="outline"
-          className="text-white bg-gray-900 rounded-full transition duration-300 flex items-center"
-          onClick={() => onUpdate(id)}
+      <div className="space-y-2">
+        <p
+          className="text-gray-400 line-clamp-2 font-normal text-sm"
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+        ></p>
+        <span
+          onClick={() => navigate(`/blog?id=${id}`)}
+          className="text-indigo-400 flex items-center mt-2 cursor-pointer hover:text-indigo-600"
         >
-          <Edit className="mr-2" size={16} />
-          Update
-        </Button>
-        <Button
-          variant="destructive"
-          className="rounded-full transition duration-300 bg-red-800 flex items-center"
-          onClick={() => onDelete(id)}
-        >
-          <Trash className="mr-2" size={16} />
-          Delete
-        </Button>
+          Read full blog <ArrowRight className="ml-1 h-4 w-4" />
+        </span>
       </div>
     </div>
   );

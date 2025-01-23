@@ -107,7 +107,7 @@ export const Aisection = () => {
                 <TypeAnimation
                   sequence={[generatedText, 1000]}
                   wrapper="span"
-                  speed={50}
+                  speed={90}
                   style={{ display: "inline-block" }}
                   repeat={Infinity}
                   className="shiny-text text-sm"

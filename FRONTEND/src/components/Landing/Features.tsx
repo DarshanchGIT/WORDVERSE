@@ -7,7 +7,7 @@ export const Features = () => {
     <div className="py-24 bg-gray-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-white">
+          <h2 className="text-3xl font-semibold text-white lg:text-5xl">
             Explore Hundreds of Blogs
           </h2>
           <p className="mt-4 text-xl text-gray-400">
@@ -50,7 +50,6 @@ export const Features = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative bg-gray-800 rounded-xl p-6 shadow-lg"
             >
-              {/* Apply backdrop filter with blur */}
               <div className="absolute inset-0 bg-black/50 rounded-xl backdrop-blur-md"></div>
 
               <div className="relative flex flex-col items-center text-center z-10">
@@ -60,7 +59,7 @@ export const Features = () => {
                     "aria-hidden": "true",
                   })}
                 </div>
-                <h3 className="mt-4 text-xl font-semibold text-white">
+                <h3 className="mt-4 text-2xl font-semibold text-white">
                   {feature.name}
                 </h3>
                 <p className="mt-3 text-gray-300">{feature.description}</p>

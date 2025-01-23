@@ -135,7 +135,7 @@ export const BlogCard = ({
           onClick={() => navigate(`/blog?id=${id}`)}
           className="text-indigo-400 flex items-center mt-2 cursor-pointer hover:text-indigo-600"
         >
-          Read More <ArrowRight className="ml-1 h-4 w-4" />
+          Rad full blog <ArrowRight className="ml-1 h-4 w-4" />
         </span>
       </div>
 
@@ -230,9 +230,10 @@ export const BlogCard = ({
           <Button
             variant="ghost"
             size="icon"
-            className="text-gray-400 border-gray-600 border-2 rounded-full"
+            className="text-gray-400 border-gray-600 border-2 rounded-full cursor-not-allowed "
+            title="This feature is under development"
           >
-            <BookmarkPlus className="h-5 w-5" />
+            <BookmarkPlus className="h-5 w-5 " />
           </Button>
         </div>
       </div>
