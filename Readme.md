@@ -2,6 +2,14 @@
 
 WORDVERSE is a comprehensive blogging platform that lets users explore, create, and manage blogs effortlessly. It features the ability to like, share, and leverage AI-powered tools for content creation, along with seamless blog management capabilities like editing and deleting posts.
 
+## **Demo**
+Check out the demo video of WORDVERSE in action: 
+
+
+https://github.com/user-attachments/assets/11f26c05-c94e-4ee7-bd18-4012d18661d6
+
+
+
 ## **Tech Stack**
 
 ### **Backend:**
@@ -18,8 +26,6 @@ WORDVERSE is a comprehensive blogging platform that lets users explore, create, 
 - **UI:** Tailwind CSS, Shadcn Component Library
 - **API Integration:** Gemini API
 
-## **Demo**
-Check out the demo video of WORDVERSE in action: [Demo Video Link](#) (Replace with actual link).
 
 ## **Local Installation**
 
