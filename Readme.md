@@ -6,7 +6,8 @@ WORDVERSE is a comprehensive blogging platform that lets users explore, create, 
 Check out the demo video of WORDVERSE in action: 
 
 
-https://github.com/user-attachments/assets/11f26c05-c94e-4ee7-bd18-4012d18661d6
+https://github.com/user-attachments/assets/b5f9c5cd-7d4b-4edb-85d1-c2713869ba68
+
 
 
 
