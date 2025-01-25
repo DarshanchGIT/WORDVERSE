@@ -34,12 +34,12 @@ Follow these steps to set up WORDVERSE locally:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/DarshanchGIT/WORDVERSE-full-stack-app.git
+   git clone https://github.com/DarshanchGIT/WORDVERSE.git
    ```
 
 2. Navigate to the project directory:
    ```bash
-   cd WORDVERSE-full-stack-app
+   cd WORDVERSE
    ```
 
 3. Continue the installation as per the respective repositories:
