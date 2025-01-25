@@ -5,7 +5,7 @@ WORDVERSE is a comprehensive blogging platform that lets users explore, create, 
 ## **Demo**
 Check out the demo video of WORDVERSE in action:
 
-![WORDVERSE Demo](https://github.com/user-attachments/assets/b5f9c5cd-7d4b-4edb-85d1-c2713869ba68)
+https://github.com/user-attachments/assets/b5f9c5cd-7d4b-4edb-85d1-c2713869ba68
 
 ## **Tech Stack**
 
@@ -37,4 +37,3 @@ Follow these steps to set up WORDVERSE locally:
 
    - **Backend:** Follow the instructions in the backend folder to set up the server.
    - **Frontend:** Follow the instructions in the frontend folder to set up the client.
-```
