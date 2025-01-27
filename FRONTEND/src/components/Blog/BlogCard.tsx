@@ -135,7 +135,7 @@ export const BlogCard = ({
           onClick={() => navigate(`/blog?id=${id}`)}
           className="text-indigo-400 flex items-center mt-2 cursor-pointer hover:text-indigo-600"
         >
-          Rad full blog <ArrowRight className="ml-1 h-4 w-4" />
+          Read full blog <ArrowRight className="ml-1 h-4 w-4" />
         </span>
       </div>
 
