@@ -4,6 +4,7 @@
 @tailwind utilities;
 
 @layer base {
+
   /* Shiny Text Effect */
   .shiny-text {
     background: linear-gradient(90deg, #f3ec78, #af4261, #f3ec78);
@@ -21,10 +22,12 @@
     0% {
       background-position: 0% 50%;
     }
+
     100% {
       background-position: 100% 50%;
     }
   }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
@@ -52,6 +55,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;
@@ -82,37 +86,66 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 
   canvas {
     position: absolute;
-    z-index: 9999; /* Ensure it's on top of other elements */
-    pointer-events: none; /* Makes sure the canvas doesn't block clicks on other elements */
+    z-index: 9999;
+    /* Ensure it's on top of other elements */
+    pointer-events: none;
+    /* Makes sure the canvas doesn't block clicks on other elements */
   }
+
   /* Scrollbar styles */
   .custom-scrollbar {
-    scrollbar-width: thin; /* For Firefox */
-    scrollbar-color: var(--muted) var(--background); /* For Firefox */
+    scrollbar-width: thin;
+    /* For Firefox */
+    scrollbar-color: var(--muted) var(--background);
+    /* For Firefox */
   }
 
   .custom-scrollbar::-webkit-scrollbar {
-    width: 8px; /* Scrollbar width */
-    height: 8px; /* Scrollbar height for horizontal scrollbars */
+    width: 8px;
+    /* Scrollbar width */
+    height: 8px;
+    /* Scrollbar height for horizontal scrollbars */
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: var(--muted); /* Scrollbar thumb color */
-    border-radius: 50%; /* Rounded corners */
+    background: var(--muted);
+    /* Scrollbar thumb color */
+    border-radius: 50%;
+    /* Rounded corners */
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--muted-foreground); /* Color when hovered */
+    background: var(--muted-foreground);
+    /* Color when hovered */
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: var(--background); /* Scrollbar track color */
-    border-radius: 50%; /* Rounded corners for track */
+    background: var(--background);
+    /* Scrollbar track color */
+    border-radius: 50%;
+    /* Rounded corners for track */
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out;
 }

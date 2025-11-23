@@ -1,40 +1,25 @@
-import axios from "axios";
+import { GoogleGenAI } from "@google/genai";
 import { geminiAPI } from "../config/env";
 
+const ai = new GoogleGenAI({
+  apiKey: geminiAPI
+});
+
 export async function generateTextGemini(prompt: string): Promise<string> {
-  if (!geminiAPI) {
-    throw new Error("Gemini API key is not defined");
-  }
 
   try {
-    const response = await axios.post(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiAPI}`,
-      {
-        contents: [
-          {
-            parts: [
-              {
-                text: prompt,
-              },
-            ],
-          },
-        ],
-      }
-    );
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash",
+      contents: prompt,
+    });
+    console.log("Gemini Output:", response);
+    const text = response.text;
 
-    // Extracting the response
-    const candidates = response.data?.candidates;
-    if (candidates && candidates.length > 0) {
-      const contentParts = candidates[0]?.content?.parts;
-      if (contentParts && contentParts.length > 0) {
-        const generatedText = contentParts[0]?.text || "No content generated.";
-        return generatedText;
-      }
-    }
+    if (!text) throw new Error("No response from Gemini API");
 
-    throw new Error("Unexpected response structure or no content generated.");
+    return text;
   } catch (error) {
-    console.error("Error fetching from Gemini API:", error);
-    throw new Error("Failed to generate text");
+    console.error("Error generating text:", error);
+    throw new Error("Failed to generate text using Gemini API");
   }
 }
