@@ -10,11 +10,13 @@ const mainBox = document.createElement("div"),
 
 const updateTextDivWidth = () => {
     if (window.innerWidth <= 480) {
-        chatBoxTextdiv.style.display = "none";
+        chatBoxTextdiv.style.fontSize = "12px";
+        chatBoxTextdiv.style.minWidth = "50px";
+        chatBoxTextdiv.style.maxWidth = "180px";
     } else {
-        chatBoxTextdiv.style.fontSize = "14px";
         chatBoxTextdiv.style.minWidth = "50px";
         chatBoxTextdiv.style.maxWidth = "250px";
+        chatBoxTextdiv.style.fontSize = "14px";
     }
 };
 
@@ -286,7 +288,7 @@ window.addEventListener("message", (event) => {
     if (event.data?.type === "SHOW_AI_AGENT") {
         iframe.style.display = 'none';
         mainBox.style.display = 'flex';
-        chatBoxTextdiv.style.display = window.innerWidth <= 480 ? 'none' : 'flex';
+        chatBoxTextdiv.style.display = 'flex';
         chatBoxTextContent.style.display = 'block';
         chatBox.style.display = 'flex';
         chatBoxImage.style.display = 'block';
@@ -302,7 +304,33 @@ chatBox.onclick = () => {
         iframe.style.borderRadius = "20px"
         mainBox.style.transition = "all 0.3s ease"
         chatBoxTextdiv.style.display = "none";
-        poweredByDiv.style.display = "none";
+        if (settingsDataVariable?.showIsPoweredByText) {
+            poweredByDiv.style.display = "flex";
+            poweredByDiv.style.alignItems = "center";
+            poweredByDiv.innerHTML = "";
+
+            const poweredByText = document.createTextNode("Powered By: \u00A0");
+            const exeiLink = document.createElement("a");
+            exeiLink.href = "https://exei.ai";
+            exeiLink.textContent = "Exei";
+            exeiLink.target = "_blank";
+            exeiLink.style.color = "#4568F2";
+            exeiLink.style.textDecoration = "underline";
+
+            const exeiLogo = document.createElement("img");
+            exeiLogo.src = "https://qa-cdn.exei.ai/public/E.svg";
+            exeiLogo.alt = "Exei Logo";
+            exeiLogo.style.width = "24px";
+            exeiLogo.style.height = "24px";
+            exeiLogo.style.borderRadius = "100%";
+            exeiLogo.style.marginLeft = "6px";
+
+            poweredByDiv.appendChild(poweredByText);
+            poweredByDiv.appendChild(exeiLink);
+            poweredByDiv.appendChild(exeiLogo);
+        } else {
+            poweredByDiv.style.display = "none";
+        }
 
         mainBox.style.flexDirection = "row-reverse"
         bounceHeight = 0;
@@ -342,7 +370,7 @@ chatBox.onclick = () => {
             poweredByDiv.style.display = "none";
             iframe.style.display = "none";
             mainBox.style.transform = `translateY(${position}px)`;
-            chatBoxTextdiv.style.display = window.innerWidth <= 480 ? "none" : "flex";
+            chatBoxTextdiv.style.display = "flex";
             chatBoxTextdiv.style.alignItems = "center";
             chatBoxTextdiv.style.justifyContent = "space-between";
             bounceHeight = 20;
