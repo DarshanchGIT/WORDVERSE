@@ -204,7 +204,7 @@ chatBoxCloseIcon.src =
     "https://iframe-cdn.exei.ai/cross.svg";
 chatBoxCloseIcon.style.borderRadius = "9999px";
 
-// mainBox.append(chatBoxTextdiv);
+mainBox.append(chatBoxTextdiv);
 mainBox.append(chatBox);
 chatBoxTextdiv.appendChild(chatBoxTextContent);
 chatBoxTextdiv.appendChild(chatBoxTextClose);
