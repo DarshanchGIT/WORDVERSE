@@ -12,22 +12,12 @@ const updateTextDivWidth = () => {
     if (window.innerWidth <= 480) {
         chatBoxTextdiv.style.display = "none";
     } else {
-        chatBoxTextdiv.style.display = "flex";
         chatBoxTextdiv.style.fontSize = "14px";
         chatBoxTextdiv.style.minWidth = "50px";
         chatBoxTextdiv.style.maxWidth = "250px";
     }
 };
 
-const showChatBoxTextIfNotMobile = () => {
-    if (window.innerWidth <= 480) {
-        chatBoxTextdiv.style.display = "none";
-    } else {
-        chatBoxTextdiv.style.display = "flex";
-    }
-};
-
-updateTextDivWidth();
 setTimeout(() => {
     updateTextDivWidth();
 }, 100);
@@ -180,11 +170,6 @@ fetch(`${BACKEND_BASE_URL}/project/${id}`)
             mainBox.style.display = "flex";
             chatBoxImage.style.width = "50px";
             chatBoxImage.style.height = "50px";
-            if (window.innerWidth <= 480) {
-                chatBoxTextdiv.style.display = "none";
-            } else {
-                updateTextDivWidth();
-            }
         };
         chatBoxTextContent.textContent = t?.labelText || t?.greet;
         settingsDataVariable = t;
@@ -301,7 +286,7 @@ window.addEventListener("message", (event) => {
     if (event.data?.type === "SHOW_AI_AGENT") {
         iframe.style.display = 'none';
         mainBox.style.display = 'flex';
-        showChatBoxTextIfNotMobile();
+        chatBoxTextdiv.style.display = window.innerWidth <= 480 ? 'none' : 'flex';
         chatBoxTextContent.style.display = 'block';
         chatBox.style.display = 'flex';
         chatBoxImage.style.display = 'block';
@@ -357,7 +342,7 @@ chatBox.onclick = () => {
             poweredByDiv.style.display = "none";
             iframe.style.display = "none";
             mainBox.style.transform = `translateY(${position}px)`;
-            showChatBoxTextIfNotMobile();
+            chatBoxTextdiv.style.display = window.innerWidth <= 480 ? "none" : "flex";
             chatBoxTextdiv.style.alignItems = "center";
             chatBoxTextdiv.style.justifyContent = "space-between";
             bounceHeight = 20;
